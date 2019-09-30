@@ -51,7 +51,7 @@ static int cfg_io(u32 ch)
 }
 
 
-/* 使能通道0 */
+/* 使能通道 */
 void hipwm_enable(u32 ch, int enable)
 {
     if (enable)
@@ -66,6 +66,8 @@ void hipwm_enable(u32 ch, int enable)
 /* 设置频率和占空比，单位Hz，范围1~100000。单位1%，范围0-100 */
 int hipwm_set_time(u32 ch, u32 f, u32 d)
 {
+    if (1 < ch)
+        return -1;
     if ((0 == f) || (100000 < f))
         return -1;
     if (d > 100)
