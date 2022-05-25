@@ -5,7 +5,7 @@
 #include "hisi_pwm_api.h"
 
 
-#define VERSION  "1.0"
+#define VERSION  "1.1"
 
 
 #if 1
@@ -207,9 +207,9 @@ static int __init pwm_init(void)
         goto ERR_1;
     }
 
-    pwm_fops.owner   = THIS_MODULE,
-    pwm_fops.open    = pwm_open,
-    pwm_fops.release = pwm_release,
+    pwm_fops.owner   = THIS_MODULE;
+    pwm_fops.open    = pwm_open;
+    pwm_fops.release = pwm_release;
     cdev_init(&pwm_cdev, &pwm_fops);
     ret = cdev_add(&pwm_cdev, pwm_ndev, 1);
     if (ret)
